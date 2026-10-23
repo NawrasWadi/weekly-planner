@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>خطتي الأسبوعية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8FAFC;--card:rgba(255,255,255,.78);--solid:#fff;--tx:#0F172A;--mut:#64748B;--bd:#E2E8F0;--pr:#6366F1;--ac:#F59E0B;--ok:#10B981;--sh:0 8px 30px rgba(99,102,241,.12);--hi:#EF4444;--me:#F59E0B;--lo:#10B981;color-scheme:light}
+:root[data-theme="dark"]{--bg:#0F172A;--card:rgba(30,41,59,.78);--solid:#1E293B;--tx:#F1F5F9;--mut:#94A3B8;--bd:#334155;--sh:0 8px 30px rgba(0,0,0,.35);color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F172A;--card:rgba(30,41,59,.78);--solid:#1E293B;--tx:#F1F5F9;--mut:#94A3B8;--bd:#334155;--sh:0 8px 30px rgba(0,0,0,.35);color-scheme:dark}}
+*{box-sizing:border-box;margin:0}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Cairo','Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--tx);transition:background .3s,color .3s;min-height:100vh;
+background-image:radial-gradient(circle at 90% 0,rgba(99,102,241,.18),transparent 40%),radial-gradient(circle at 5% 30%,rgba(20,184,166,.12),transparent 35%)}
+.wrap{max-width:1200px;margin:auto;padding:clamp(12px,3vw,28px)}
+.glass{background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--bd);border-radius:16px;box-shadow:var(--sh);transition:background .3s}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;margin-bottom:14px;background:linear-gradient(135deg,#6366F1,#14B8A6);color:#fff;border:0}
+h1{font-size:clamp(1.3rem,3.5vw,2rem);font-weight:800}
+.slogan{opacity:.95;font-size:clamp(.9rem,2.2vw,1.05rem);margin-top:2px}
+.ibtn{border:0;border-radius:12px;padding:9px 13px;cursor:pointer;font:inherit;font-weight:600;background:rgba(255,255,255,.22);color:#fff;display:inline-flex;gap:6px;align-items:center}
+.ibtn:hover{background:rgba(255,255,255,.35)}
+.quote{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px;margin-bottom:14px;border-inline-start:5px solid var(--ac)}
+.quote span{font-weight:600}
+.link{background:none;border:0;color:var(--pr);cursor:pointer;font:inherit;font-weight:700;white-space:nowrap}
+.days{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;margin-bottom:6px}
+.day{flex:1 0 84px;border:1px solid var(--bd);background:var(--solid);color:var(--tx);border-radius:14px;padding:9px 6px;cursor:pointer;font:inherit;text-align:center;transition:.2s}
+.day b{display:block;font-size:.95rem}.day small{color:var(--mut)}
+.day.on{background:var(--pr);color:#fff;border-color:var(--pr);transform:translateY(-2px);box-shadow:var(--sh)}
+.day.on small{color:#E0E7FF}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:14px}
+.stat{padding:14px 18px}
+.bar{height:10px;background:var(--bd);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pr),var(--ok));border-radius:99px;transition:width .5s}
+.row{display:flex;justify-content:space-between;font-weight:600;font-size:.92rem}
+.add{padding:16px;margin-bottom:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--solid);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;width:100%}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--pr);outline-offset:2px}
+.btn{border:0;border-radius:12px;padding:10px 18px;background:var(--pr);color:#fff;font:inherit;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn.ac{background:var(--ac)}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:14px}
+.col{padding:14px;min-height:200px}
+.col h2{font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cnt{background:var(--pr);color:#fff;border-radius:99px;padding:1px 11px;font-size:.85rem}
+.col.doing .cnt{background:var(--ac)}.col.done .cnt{background:var(--ok)}
+.task{display:flex;gap:10px;align-items:flex-start;background:var(--solid);border:1px solid var(--bd);border-radius:14px;padding:11px 12px;margin-bottom:9px;animation:pop .35s ease;border-inline-start:4px solid var(--p)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--ok);cursor:pointer;flex:none;margin-top:3px;padding:0}
+.task .t{flex:1;min-width:0}.task .t b{display:block;word-break:break-word}
+.task.fin .t b{text-decoration:line-through;color:var(--mut)}
+.task small{color:var(--mut)}
+.x{background:none;border:0;color:var(--mut);cursor:pointer;font-size:1.1rem;padding:2px 6px;border-radius:8px}.x:hover{color:var(--hi);background:rgba(239,68,68,.1)}
+.empty{text-align:center;color:var(--mut);padding:26px 8px;font-size:.92rem}
+.empty div{font-size:2rem}
+.goals{padding:16px}.goals h2{margin-bottom:10px}
+.g{display:flex;gap:10px;align-items:center;padding:8px 4px;border-bottom:1px dashed var(--bd)}
+.g input[type=checkbox]{width:20px;height:20px;accent-color:var(--ac);padding:0}
+.g span{flex:1}.g.d span{text-decoration:line-through;color:var(--mut)}
+.toast{position:fixed;inset-inline:0;bottom:calc(20px + env(safe-area-inset-bottom,0px));margin:auto;width:max-content;max-width:90%;background:var(--tx);color:var(--bg);padding:12px 22px;border-radius:14px;font-weight:700;box-shadow:var(--sh);animation:pop .3s;z-index:50}
+.cf{position:fixed;top:-10px;width:9px;height:14px;z-index:60;pointer-events:none;animation:fall 1.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
+footer{text-align:center;color:var(--mut);padding:14px;font-weight:600}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useMemo,useCallback}=React;
+const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const z=n=>String(n).padStart(2,'0');
+const dk=d=>d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate());
+const addD=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const QUOTES=["الخطة بدون التزام مجرد أمنية.","ابدأ الآن، لا تنتظر الظرف المثالي.","خطوة صغيرة كل يوم تصنع فرقاً كبيراً.","ما تخطط له الليلة تحصده غداً.","الالتزام هو الجسر بين الهدف والإنجاز.","قسّم الحلم إلى مهام وابدأ بأسهلها.","النجاح مجموع جهود صغيرة تتكرر كل يوم.","من خطّط لأسبوعه ملك يومه.","لا تقارن بدايتك بنهاية غيرك.","الانضباط يعني أن تختار ما تريده أكثر مما تريده الآن.","اكتب هدفك، فالمكتوب يتحقق أسرع.","التأجيل سارق الأحلام.","رتّب أولوياتك قبل أن تزدحم أيامك.","كل يوم فرصة جديدة لتبدأ من جديد.","الاستمرار أهم من الكمال.","أنجز مهمة واحدة الآن وشاهد الزخم يكبر.","وقتك هو حياتك، فخطّط له بوعي.","الإنجاز الصغير اليوم ثقة كبيرة غداً.","لا تنتظر الإلهام، اصنعه بالعمل.","أسبوع منظّم يعني عقل مرتاح.","من يلتزم بخطته يصل مهما كانت الطريق طويلة."];
+const PRI={high:["عالية","var(--hi)"],mid:["متوسطة","var(--me)"],low:["منخفضة","var(--lo)"]};
+function confetti(){const c=['#6366F1','#14B8A6','#F59E0B','#10B981','#EC4899'];for(let i=0;i<36;i++){const e=document.createElement('i');e.className='cf';e.style.left=Math.random()*100+'vw';e.style.background=c[i%5];e.style.animationDelay=Math.random()*.4+'s';e.style.borderRadius=i%2?'50%':'2px';document.body.appendChild(e);setTimeout(()=>e.remove(),2200)}}
+const Empty=({i,t})=><div className="empty"><div>{i}</div>{t}</div>;
+const Bar=({label,a,b})=><div className="glass stat"><div className="row"><span>{label}</span><span>{a}/{b} · {b?Math.round(a/b*100):0}%</span></div><div className="bar"><i style={{width:(b?a/b*100:0)+'%'}}/></div></div>;
+const Card=({t,fin,onCheck,onDel,checked})=><div className={"task"+(fin?" fin":"")} style={{'--p':PRI[t.pri][1]}}>
+<input type="checkbox" checked={checked} onChange={onCheck} aria-label={"تحديد "+t.title}/>
+<div className="t"><b>{t.title}</b>{t.desc&&<small>{t.desc}</small>}<br/><small>أولوية {PRI[t.pri][0]}</small></div>
+<button className="x" onClick={onDel} aria-label="حذف المهمة">✕</button></div>;
+function App(){
+ const today=useMemo(()=>new Date(),[]);
+ const days=useMemo(()=>Array.from({length:7},(_,i)=>addD(today,i)),[today]);
+ const [tasks,setTasks]=useState(()=>{const lim=dk(addD(new Date(),-7));return ld('tasks',[]).filter(t=>t.day>=lim)});
+ const [goals,setGoals]=useState(()=>ld('goals',[]));
+ const [theme,setTheme]=useState(()=>ld('theme',null)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+ const [sel,setSel]=useState(dk(today));
+ const [qi,setQi]=useState(()=>Math.floor(today/864e5)%QUOTES.length);
+ const [toast,setToast]=useState('');
+ const [f,setF]=useState({title:'',desc:'',pri:'mid'});
+ const [gt,setGt]=useState('');
+ useEffect(()=>{sv('tasks',tasks);sv('lastCleanup',dk(new Date()))},[tasks]);
+ useEffect(()=>sv('goals',goals),[goals]);
+ useEffect(()=>{document.documentElement.setAttribute('data-theme',theme);sv('theme',theme)},[theme]);
+ const say=useCallback(m=>{setToast(m);clearTimeout(window._t);window._t=setTimeout(()=>setToast(''),2600)},[]);
+ const day=tasks.filter(t=>t.day===sel);
+ const col=s=>day.filter(t=>t.status===s);
+ const move=(id,status)=>{setTasks(ts=>ts.map(t=>t.id===id?{...t,status}:t));
+  if(status==='done'){confetti();const ts=tasks.map(t=>t.id===id?{...t,status}:t).filter(t=>t.day===sel);
+   say(ts.length&&ts.every(t=>t.status==='done')?'🏆 أنجزت كل مهام اليوم! أنت رائع':'🎉 أحسنت! اقتربت من حلمك')}
+  else if(status==='doing')say('🚀 بدأت التنفيذ، استمر!')};
+ const add=()=>{const title=f.title.trim();if(!title){say('✍️ اكتب عنوان المهمة أولاً');return}
+  setTasks(ts=>[...ts,{id:Date.now()+''+Math.random(),title,desc:f.desc.trim(),pri:f.pri,day:sel,status:'daily',created:Date.now()}]);
+  setF({title:'',desc:'',pri:f.pri});say('📌 أُضيفت المهمة إلى خطتك')};
+ const del=id=>setTasks(ts=>ts.filter(t=>t.id!==id));
+ const addGoal=()=>{const t=gt.trim();if(!t)return;setGoals(g=>[...g,{id:Date.now()+'',title:t,done:false}]);setGt('')};
+ const editGoal=g=>{const t=prompt('تعديل الهدف',g.title);if(t&&t.trim())setGoals(gs=>gs.map(x=>x.id===g.id?{...x,title:t.trim()}:x))};
+ const toggleGoal=g=>{setGoals(gs=>gs.map(x=>x.id===g.id?{...x,done:!x.done}:x));if(!g.done){confetti();say('🌟 هدف جديد تحقق!')}};
+ const dn=tasks.filter(t=>t.status==='done').length;
+ const gd=goals.filter(g=>g.done).length;
+ const wk=n=>n.toLocaleDateString('ar',{weekday:'long'});
+ return <div className="wrap">
+ <header className="glass"><div><h1>📅 خطتي الأسبوعية</h1><div className="slogan">كل مهمة تنجزها تقرّبك من أحلامك ✨</div></div>
+  <button className="ibtn" onClick={()=>setTheme(theme==='dark'?'light':'dark')} aria-label="تبديل الوضع الداكن">{theme==='dark'?'☀️ فاتح':'🌙 داكن'}</button></header>
+ <div className="glass quote"><span>💡 {QUOTES[qi]}</span><button className="link" onClick={()=>setQi((qi+1)%QUOTES.length)}>عبارة جديدة</button></div>
+ <div className="days" role="tablist">{days.map((d,i)=>{const k=dk(d);return <button key={k} role="tab" aria-selected={sel===k} className={"day"+(sel===k?" on":"")} onClick={()=>setSel(k)}><b>{i===0?'اليوم':wk(d)}</b><small>{d.toLocaleDateString('ar',{day:'numeric',month:'short'})}</small></button>})}</div>
+ <div className="stats"><Bar label="إنجاز اليوم" a={col('done').length} b={day.length}/><Bar label="إنجاز الأسبوع" a={dn} b={tasks.length}/><Bar label="أهداف الأسبوع" a={gd} b={goals.length}/></div>
+ <div className="glass add">
+  <input placeholder="عنوان المهمة…" value={f.title} onChange={e=>setF({...f,title:e.target.value})} onKeyDown={e=>e.key==='Enter'&&add()} aria-label="عنوان المهمة"/>
+  <input placeholder="وصف اختياري" value={f.desc} onChange={e=>setF({...f,desc:e.target.value})} aria-label="وصف"/>
+  <select value={f.pri} onChange={e=>setF({...f,pri:e.target.value})} aria-label="الأولوية"><option value="high">أولوية عالية</option><option value="mid">أولوية متوسطة</option><option value="low">أولوية منخفضة</option></select>
+  <button className="btn" onClick={add}>＋ إضافة لهذا اليوم</button></div>
+ <div className="board">
+  <section className="glass col"><h2>📋 المهام اليومية <span className="cnt">{col('daily').length}</span></h2>
+   {col('daily').map(t=><Card key={t.id} t={t} checked={false} onCheck={()=>move(t.id,'doing')} onDel={()=>del(t.id)}/>)}
+   {!col('daily').length&&<Empty i="🌱" t="خطّط ليومك: أضف مهمتك الأولى وابدأ"/>}</section>
+  <section className="glass col doing"><h2>⚡ قيد التنفيذ <span className="cnt">{col('doing').length}</span></h2>
+   {col('doing').map(t=><Card key={t.id} t={t} checked={false} onCheck={()=>move(t.id,'done')} onDel={()=>del(t.id)}/>)}
+   {!col('doing').length&&<Empty i="🎯" t="ركّز على مهمة واحدة في كل مرة"/>}</section>
+  <section className="glass col done"><h2>✅ المكتملة <span className="cnt">{col('done').length}</span></h2>
+   {col('done').map(t=><Card key={t.id} t={t} fin checked={true} onCheck={()=>move(t.id,'doing')} onDel={()=>del(t.id)}/>)}
+   {!col('done').length&&<Empty i="🏆" t="إنجازاتك ستظهر هنا، ابدأ الآن"/>}</section>
+ </div>
+ <section className="glass goals"><h2>🎯 أهداف الأسبوع</h2>
+  <div style={{display:'flex',gap:8,marginBottom:8}}><input placeholder="أضف هدفاً لهذا الأسبوع…" value={gt} onChange={e=>setGt(e.target.value)} onKeyDown={e=>e.key==='Enter'&&addGoal()} aria-label="هدف جديد"/><button className="btn ac" onClick={addGoal}>إضافة</button></div>
+  {goals.map(g=><div key={g.id} className={"g"+(g.done?" d":"")}><input type="checkbox" checked={g.done} onChange={()=>toggleGoal(g)} aria-label={"إنجاز "+g.title}/><span>{g.title}</span><button className="x" onClick={()=>editGoal(g)} aria-label="تعديل">✎</button><button className="x" onClick={()=>setGoals(gs=>gs.filter(x=>x.id!==g.id))} aria-label="حذف">✕</button></div>)}
+  {!goals.length&&<Empty i="🌟" t="الهدف الواضح نصف الطريق، اكتب هدفك الأول"/>}</section>
+ <footer>كل مهمة تنجزها تقرّبك من أحلامك ✨ ابدأ الآن</footer>
+ {toast&&<div className="toast" role="status">{toast}</div>}
+ </div>}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
